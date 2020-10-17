@@ -119,7 +119,7 @@ def preprocess(data, lemmatize=False, stem=False):
 
 	tokenizer = TreebankWordTokenizer()
 	STOPWORDS = set(stopwords.words('english'))
-	STOPWORS = set(filter(lambda x : x != "not", STOPWORDS))
+	STOPWORDS = set(filter(lambda x : x != "not", STOPWORDS))
 
 	for text in data:
 
