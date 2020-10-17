@@ -85,6 +85,7 @@ def main(data):
 	vocab = json.load(f)
 	f.close()
 
+	print("Tokens ", tokens)
 	for t in tokens:
 		if t in vocab:
 			encoded_data.append(vocab[t])
