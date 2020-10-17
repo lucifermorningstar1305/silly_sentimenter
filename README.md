@@ -14,9 +14,21 @@ The app simply returns whether a review is `positive` or `negative` . There can 
 
 Please use this curl command to call the API and then modify the data as per your need.
 
+For using the `Logistic` Model please use this `cURL`
+
 ```
-curl --location --request POST 'https://sentiment-analyser-linear.herokuapp.com/predict/' \
+curl --location --request POST 'https://sentiment-analyser-linear.herokuapp.com/predict/logistic/' \
 --header 'Content-Type: text/plain' \
---data-raw '{"1":{"data":"This is the worst movie I'\''ve ever seen"}}'
+--data-raw '{"1":{"data":"You are boring me with this problem"}}'
+```
+
+
+
+For using the `LSTM` Model please use this `cURL`
+
+```
+curl --location --request POST 'https://sentiment-analyser-linear.herokuapp.com/predict/lstm/' \
+--header 'Content-Type: text/plain' \
+--data-raw '{"1":{"data":"You are boring me with this problem"}}'
 ```
 
