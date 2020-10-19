@@ -100,7 +100,7 @@ def main_bi(data):
 	encoded_data = torch.from_numpy(np.array(encoded_data)).long()
 
 	model = SentimentClassifier(len(vocab), 300, 128, 2, 1, embedding_mat)
-	model.load_state_dict(torch.load("./MODELS/lstm_bidirectional_model.pt", map_location=torch.device("cpu"))["model"])
+	model.load_state_dict(torch.load("./MODELS/lstm_bidirectional_model.pt", map_location=torch.device("cpu"))["model_bidirectional"])
 
 	review_sentiment = predict(model, encoded_data)
 
