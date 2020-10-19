@@ -6,6 +6,7 @@ created by Адитьям
 from flask import Flask, request
 from predictor_logistic import predict
 from predictor_lstm import main
+from predictor_bidirectional import main_bi
 import json
 import traceback
 
@@ -34,6 +35,19 @@ def prediction_lstm():
 	data = json.loads(request.get_data())
 	try:
 		results = [main(v["data"]) for _, v in data.items()]
+		print(results)
+		return json.dumps({"prediction" : results, "statusCode" : 200})
+
+	except Exception as e:
+		print(traceback.print_exc())
+		return json.dumps({"message":"Error Occured, please check the logs", "statusCode":500})
+
+
+@app.route("/predict/bi_lstm/", methods=["GET", "POST"])
+def prediction_bidirectional_lstm():
+	data = json.loads(request.get_data())
+	try:
+		results = [main_bi(v["data"]) for _, v in data.items()]
 		print(results)
 		return json.dumps({"prediction" : results, "statusCode" : 200})
 
