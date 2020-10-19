@@ -10,7 +10,7 @@ import sys
 
 class SentimentClassifier(nn.Module):
 
-	def __init__(self, n_vocab, embedding_dim, n_hidden, n_layers, n_classes, embedding_mat, dropout_rate=0.3):
+	def __init__(self, n_vocab, embedding_dim, n_hidden, n_layers, n_classes, embedding_mat, bidirectional=True, dropout_rate=0.3):
 
 		super(SentimentClassifier, self).__init__()
 		self.V = n_vocab
@@ -18,10 +18,11 @@ class SentimentClassifier(nn.Module):
 		self.H = n_hidden
 		self.L = n_layers
 		self.O = n_classes
+		self.bidirectional = bidirectional
 
 		self.embedding = nn.Embedding(self.V, self.D)
 		self.embedding.weight = nn.Parameter(embedding_mat, requires_grad=False)
-		self.lstm = nn.LSTM(self.D, self.H, self.L, dropout=dropout_rate, batch_first=True)
+		self.lstm = nn.LSTM(self.D, self.H, self.L, dropout=dropout_rate, batch_first=True, bidirectional=self.bidirectional)
 		
 		self.fc = nn.Sequential(nn.ReLU(),
 								nn.Linear(self.H*4, 64),
