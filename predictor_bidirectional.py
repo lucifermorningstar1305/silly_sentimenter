@@ -67,7 +67,7 @@ def predict(model, inputs):
 def main_bi(data):
 	preprocessed_data = preprocess(data, lemmatize=True)[0]
 
-	if not os.path.exists("./MODELS/lstm_model.pt"):
+	if not os.path.exists("./MODELS/lstm_bidirectional_model.pt"):
 		os.system("gdown https://drive.google.com/uc?id=1PmCYyIoyC5SfeNo7AA7Jbb6bMX94md0e")
 		os.system("mv lstm_bidirectional_model.pt MODELS/")
 
